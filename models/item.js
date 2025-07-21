@@ -12,6 +12,11 @@ const ItemSchema = new mongoose.Schema(
     customer: { type: String, required: true },
     department: { type: String, required: true },
     productionOrder: { type: String, required: true, unique: true },
+    date: { type: Date, default: Date.now },
+    time: { type: String, required: true },
+    operator: { type: String, required: true },
+    drawingVersion: { type: String, required: true },
+    inspector: { type: String, required: true },
   },
   { timestamps: true },
 );
