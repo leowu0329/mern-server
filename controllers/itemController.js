@@ -64,6 +64,12 @@ exports.updateItem = async (req, res) => {
       updateData.department = getDepartmentFromOrder(
         updateData.productionOrder,
       );
+      // 重新判斷首件/巡檢
+      const exist = await Item.findOne({
+        productionOrder: updateData.productionOrder,
+        _id: { $ne: req.params.id },
+      });
+      updateData.firstPieceInspection = exist ? '巡檢' : '首件';
     }
 
     const updatedItem = await Item.findByIdAndUpdate(
